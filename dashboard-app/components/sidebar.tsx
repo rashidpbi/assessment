@@ -11,11 +11,15 @@ const navItems = [
   { name: 'Analytics', href: '/analytics', icon: BarChart3 },
 ];
 
-export const Sidebar = () => {
+interface SidebarProps {
+  onClose?: () => void;
+}
+
+export const Sidebar = ({ onClose }: SidebarProps) => {
   const pathname = usePathname();
 
   return (
-    <div className="flex flex-col h-screen w-64 bg-card border-r">
+    <div className="flex flex-col h-full bg-card">
       <div className="p-6">
         <h1 className="text-xl font-bold tracking-tight text-primary flex items-center gap-2">
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
@@ -31,6 +35,7 @@ export const Sidebar = () => {
             <Link
               key={item.href}
               href={item.href}
+              onClick={onClose}
               className={cn(
                 'flex items-center gap-3 px-3 py-2 rounded-md transition-colors',
                 isActive 

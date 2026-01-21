@@ -119,24 +119,26 @@ export default function DashboardPage() {
           <CardTitle>Recent Transactions</CardTitle>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead><EditableLabel labelKey="table_col_product" /></TableHead>
-                <TableHead><EditableLabel labelKey="table_col_region" /></TableHead>
-                <TableHead className="text-right"><EditableLabel labelKey="table_col_amount" /></TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {recentSales.map((sale) => (
-                <TableRow key={sale._id}>
-                  <TableCell className="font-medium">{sale.product}</TableCell>
-                  <TableCell>{sale.region}</TableCell>
-                  <TableCell className="text-right">${sale.amount}</TableCell>
+          <div className="overflow-x-auto">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead><EditableLabel labelKey="table_col_product" /></TableHead>
+                  <TableHead><EditableLabel labelKey="table_col_region" /></TableHead>
+                  <TableHead className="text-right"><EditableLabel labelKey="table_col_amount" /></TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {recentSales.map((sale) => (
+                  <TableRow key={sale._id}>
+                    <TableCell className="font-medium">{sale.product}</TableCell>
+                    <TableCell>{sale.region}</TableCell>
+                    <TableCell className="text-right">${sale.amount}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </CardContent>
       </Card>
     </div>
