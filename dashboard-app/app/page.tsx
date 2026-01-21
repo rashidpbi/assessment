@@ -14,6 +14,8 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowUpRight, DollarSign, ShoppingCart } from 'lucide-react';
 
+import { PageSkeleton } from '@/components/page-skeleton';
+
 export default function DashboardPage() {
   const [data, setData] = useState<any>(null);
   const [recentSales, setRecentSales] = useState<any[]>([]);
@@ -23,7 +25,7 @@ export default function DashboardPage() {
     fetch('/api/sales/recent').then(res => res.json()).then(setRecentSales);
   }, []);
 
-  if (!data) return <div className="p-8">Loading dashboard...</div>;
+  if (!data) return <PageSkeleton />;
 
   const revenueOption = {
     grid: { top: 20, right: 20, bottom: 40, left: 60 },

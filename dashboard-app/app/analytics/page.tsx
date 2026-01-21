@@ -13,6 +13,8 @@ import {
 } from '@/components/ui/table';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
+import { PageSkeleton } from '@/components/page-skeleton';
+
 export default function AnalyticsPage() {
   const [data, setData] = useState<any>(null);
   const [recentSales, setRecentSales] = useState<any[]>([]);
@@ -22,7 +24,7 @@ export default function AnalyticsPage() {
     fetch('/api/sales/recent').then(res => res.json()).then(setRecentSales);
   }, []);
 
-  if (!data) return <div className="p-8">Loading analytics...</div>;
+  if (!data) return <PageSkeleton />;
 
   const barOption = {
     grid: { top: 20, right: 20, bottom: 40, left: 60 },
