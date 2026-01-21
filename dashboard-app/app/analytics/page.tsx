@@ -29,11 +29,11 @@ export default function AnalyticsPage() {
     xAxis: { type: 'value' },
     yAxis: {
       type: 'category',
-      data: data.regionalPerformance.map((r: any) => r._id),
+      data: (data?.regionalPerformance || []).map((r: any) => r._id),
     },
     series: [
       {
-        data: data.regionalPerformance.map((r: any) => r.total),
+        data: (data?.regionalPerformance || []).map((r: any) => r.total),
         type: 'bar',
         itemStyle: { color: '#8b5cf6' }
       },
@@ -66,7 +66,7 @@ export default function AnalyticsPage() {
           }
         },
         labelLine: { show: false },
-        data: data.categoryPerformance.map((c: any) => ({ name: c._id, value: c.total }))
+        data: (data?.categoryPerformance || []).map((c: any) => ({ name: c._id, value: c.total }))
       }
     ]
   };
@@ -98,7 +98,7 @@ export default function AnalyticsPage() {
           </CardHeader>
           <CardContent>
              <div className="text-4xl font-bold tracking-tighter">
-               ${data.summary.total.toLocaleString()}
+               ${(data.summary?.total || 0).toLocaleString()}
              </div>
              <p className="text-sm text-muted-foreground mt-2">
                Verified revenue across all regions.

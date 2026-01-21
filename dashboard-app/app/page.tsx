@@ -29,12 +29,12 @@ export default function DashboardPage() {
     grid: { top: 20, right: 20, bottom: 40, left: 60 },
     xAxis: {
       type: 'category',
-      data: data.monthlyRevenue.map((m: any) => `Month ${m._id}`),
+      data: (data?.monthlyRevenue || []).map((m: any) => `Month ${m._id}`),
     },
     yAxis: { type: 'value' },
     series: [
       {
-        data: data.monthlyRevenue.map((m: any) => m.total),
+        data: (data?.monthlyRevenue || []).map((m: any) => m.total),
         type: 'line',
         smooth: true,
         areaStyle: {
@@ -59,7 +59,7 @@ export default function DashboardPage() {
           borderWidth: 2
         },
         label: { show: false },
-        data: data.regionalPerformance.map((r: any) => ({ name: r._id, value: r.total }))
+        data: (data?.regionalPerformance || []).map((r: any) => ({ name: r._id, value: r.total }))
       }
     ]
   };
@@ -80,7 +80,7 @@ export default function DashboardPage() {
             <DollarSign className="w-4 h-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${data.summary.total.toLocaleString()}</div>
+            <div className="text-2xl font-bold">${(data.summary?.total || 0).toLocaleString()}</div>
             <p className="text-xs text-muted-foreground flex items-center gap-1">
               <ArrowUpRight className="w-3 h-3 text-emerald-500" />
               +20.1% from last month
@@ -95,7 +95,7 @@ export default function DashboardPage() {
             <ShoppingCart className="w-4 h-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{data.summary.count}</div>
+            <div className="text-2xl font-bold">{data.summary?.count || 0}</div>
             <p className="text-xs text-muted-foreground">
               Total volume processed
             </p>

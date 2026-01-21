@@ -30,7 +30,12 @@ export const useLabelStore = create<LabelState>((set, get) => ({
     set({ isLoading: true });
     try {
       const response = await fetch('/api/labels');
-      const data: ILabel[] = await response.json();
+      const data = await response.json();
+      
+      if (!Array.isArray(data)) {
+        throw new Error('Labels data is not an array');
+      }
+
       const labelsMap = data.reduce((acc, label) => {
         acc[label.key] = label;
         return acc;
