@@ -63,6 +63,14 @@ const seedLabels = [
       { page: 'Dashboard', component: 'Recent Sales Table' },
       { page: 'Analytics', component: 'Product Performance Table' }
     ]
+  },
+  {
+    key: 'metric_regional_performance',
+    text: 'Regional Performance',
+    usages: [
+      { page: 'Dashboard', component: 'Regional Chart' },
+      { page: 'Analytics', component: 'Regional Bar Chart' }
+    ]
   }
 ];
 

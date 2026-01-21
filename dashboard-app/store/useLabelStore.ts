@@ -43,13 +43,14 @@ export const useLabelStore = create<LabelState>((set, get) => ({
 
   updateLabel: async (key: string, newText: string) => {
     const previousLabel = get().labels[key];
-    if (!previousLabel) return;
-
-    // Optimistic update
+    
+    // Optimistic update (handle missing label by creating a temporary one)
     set((state) => ({
       labels: {
         ...state.labels,
-        [key]: { ...previousLabel, text: newText }
+        [key]: previousLabel 
+          ? { ...previousLabel, text: newText }
+          : { key, text: newText, usages: [] }
       }
     }));
 

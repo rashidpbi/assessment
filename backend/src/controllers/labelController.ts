@@ -18,7 +18,7 @@ export const updateLabel = async (req: Request, res: Response) => {
     const label = await Label.findOneAndUpdate(
       { key },
       { text },
-      { new: true }
+      { new: true, upsert: true, setDefaultsOnInsert: true }
     );
 
     if (!label) {

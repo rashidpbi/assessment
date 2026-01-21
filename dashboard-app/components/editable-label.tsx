@@ -72,7 +72,7 @@ export const EditableLabel: React.FC<EditableLabelProps> = ({
       <Dialog open={isEditing} onOpenChange={setIsEditing}>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Edit Label: {labelKey}</DialogTitle>
+            <DialogTitle>Edit Label: {labelText}</DialogTitle>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
